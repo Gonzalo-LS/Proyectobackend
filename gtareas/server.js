@@ -112,6 +112,7 @@ app.get('/tareas', (req, res) => {
 app.post('/tareas', (req, res) => {
   const { titulo, descripcion, usuario_id } = req.body;
   const token = req.headers['authorization'];
+   console.log('Token recibido:', token);
 
   if (!token) return res.status(403).json({ message: 'No autorizado' });
 
