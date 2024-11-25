@@ -54,7 +54,8 @@ app.post('/login', (req, res) => {
 
 
 app.get('/tareas', (req, res) => {
-  const token = req.headers['authorization'];
+  const authHeader = req.headers['authorization'];
+const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
 
   if (!token) {
     return res.status(403).json({ message: 'No autorizado' });
@@ -143,7 +144,8 @@ console.log('Token decodificado:', decoded);
 
 app.patch('/tareas/:id', (req, res) => {
   const { id } = req.params;
-  const token = req.headers['authorization'];
+  const authHeader = req.headers['authorization'];
+const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
 
   if (!token) return res.status(403).json({ message: 'No autorizado' });
 
@@ -170,7 +172,8 @@ app.patch('/tareas/:id', (req, res) => {
 
 app.delete('/tareas/:id', (req, res) => {
   const { id } = req.params;
-  const token = req.headers['authorization'];
+  const authHeader = req.headers['authorization'];
+const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
 
   if (!token) return res.status(403).json({ message: 'No autorizado' });
 
