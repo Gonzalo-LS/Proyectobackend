@@ -118,6 +118,8 @@ app.post('/tareas', (req, res) => {
   jwt.verify(token, 'Password!123', (err, decoded) => {
     if (err) return res.status(403).json({ message: 'Acceso denegado' });
 
+console.log('Token decodificado:', decoded); 
+    
     if (decoded.rol !== 'admin') {
       return res.status(403).json({ message: 'Acceso denegado' });
     }
